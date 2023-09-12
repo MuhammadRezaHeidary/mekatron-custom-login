@@ -1,5 +1,16 @@
+:root {
+    --body-url: url("../images/login-back.jpg");
+    --login-section-color: rgba(255, 255, 255, 0.25);
+    --login-section-blur-param: 5px;
+    --login-section-padding: 20px;
+    --logo-url: url("../images/mekalogo3 - pwa.png");
+    --logo-size: 120px;
+    --login-border-radius: 12px;
+    --login-form-color: rgba(255, 255, 255, 0.63);
+}
+
 body {
-    background: url("../images/login-back.jpg");
+    /*background: var(--body-url);*/
     background-size: cover;
     display: flex;
     justify-content:flex-start;
@@ -11,10 +22,10 @@ body {
 
 #login {
     margin: initial;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.25);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    padding: var(--login-section-padding);
+    /*background-color: var(--login-section-color);*/
+    -webkit-backdrop-filter: blur(var(--login-section-blur-param));
+    backdrop-filter: blur(var(--login-section-blur-param));
 }
 
 p#nav a {
@@ -34,18 +45,19 @@ p#backtoblog a:hover {
 }
 
 .login h1 a {
-    background-image: url("../images/mekalogo3 - pwa.png");
-    background-size: 120px;
-    height: 120px;
-    width: 120px;
+    /*background-image: var(--logo-url);*/
+    background-size: var(--logo-size);
+    height: var(--logo-size);
+    width: var(--logo-size);
 }
 
 .login form {
-    border-radius: 12px;
+    border-radius: var(--login-border-radius);
+    /*background-color: var(--login-form-color);*/
 }
 
 p#login-message {
-    border-radius: 12px;
+    border-radius: var(--login-border-radius);
 }
 
 p.forgetmenot input {
@@ -78,7 +90,7 @@ p.forgetmenot label:after {
     border-radius: 50%;
     position: absolute;
     right: 3px;
-    top: 3px;
+    top: 4px;
     transition: 0.3s ease-in-out;
 }
 

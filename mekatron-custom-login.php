@@ -39,6 +39,29 @@ add_action('login_enqueue_scripts', function (){
 //        'screen and (max-width: 600px)',
     'all'
     );
+
+    $mekatron_login_background_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'login-back.jpg';
+    $mekatron_login_logo_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'mekalogo3 - pwa.png';
+    $mekatron_login_form_section_color = '#FFFFFF3F';
+    $mekatron_login_form_color = '#FFFFFFAA';
+
+    wp_add_inline_style(
+        'mekatron-custom-login-style-css',
+        "
+        body {
+            background: url('$mekatron_login_background_image');
+        }
+        #login {
+            background-color: $mekatron_login_form_section_color;
+        }
+        .login form {
+            background-color: $mekatron_login_form_color;
+        }
+        .login h1 a {
+            background-image: url('$mekatron_login_logo_image');
+        }
+        "
+    );
 });
 
 /*Method 1 for importing CSS: BAD*/
