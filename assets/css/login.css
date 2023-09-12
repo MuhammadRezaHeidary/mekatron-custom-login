@@ -1,3 +1,94 @@
 body {
-    background: red !important;
+    background: url("../images/login-back.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content:flex-start;
+}
+
+.language-switcher {
+    display: none;
+}
+
+#login {
+    margin: initial;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.25);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+p#nav a {
+    color: lightgray !important;
+}
+
+p#nav a:hover {
+    color: white !important;
+}
+
+p#backtoblog a {
+    color: lightgray !important;
+}
+
+p#backtoblog a:hover {
+    color: white !important;
+}
+
+.login h1 a {
+    background-image: url("../images/mekalogo3 - pwa.png");
+    background-size: 120px;
+    height: 120px;
+    width: 120px;
+}
+
+.login form {
+    border-radius: 12px;
+}
+
+p#login-message {
+    border-radius: 12px;
+}
+
+p.forgetmenot input {
+    display: none;
+}
+
+p.forgetmenot label {
+    position: relative;
+    padding-right: 40px;
+}
+
+p.forgetmenot label:before {
+    background: white;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+    border: 1px solid #dadada;
+    content:"";
+    width: 35px;
+    height: 20px;
+    border-radius: 60px;
+    position: absolute;
+    right: 0;
+    top: 1px;
+}
+
+p.forgetmenot label:after {
+    content:"";
+    width: 17px;
+    height: 17px;
+    background: #e71313;
+    border-radius: 50%;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    transition: 0.3s ease-in-out;
+}
+
+p.forgetmenot input:checked + label:after {
+    right: 16px;
+    background-color: green;
+}
+
+input#wp-submit {
+    border-radius: 15px;
+    background-color: purple;
+    border-color: #bd84ff;
 }
