@@ -16,7 +16,7 @@ define('MEKATRON_CUSTOM_LOGIN_ASSETS_URL', plugin_dir_url(__FILE__).'assets/');
 const MEKATRON_CUSTOM_LOGIN_CSS_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'css/';
 const MEKATRON_CUSTOM_LOGIN_JS_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'js/';
 const MEKATRON_CUSTOM_LOGIN_IMAGES_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'images/';
-const MEKATRON_CUSTOM_LOGIN_CSS_VER = '1.0.0';
+const MEKATRON_CUSTOM_LOGIN_VER = '1.0.0';
 
 /*Method 3 for importing CSS: GOOD*/
 /*
@@ -35,7 +35,7 @@ add_action('login_enqueue_scripts', function (){
         [],
 //        '1.0.0',
 //        time(),
-        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_CSS_VER,
+        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
 //        'screen and (max-width: 600px)',
     'all'
     );
@@ -62,7 +62,21 @@ add_action('login_enqueue_scripts', function (){
         }
         "
     );
+
+    // Enqueue script
+    wp_enqueue_script(
+        'mekatron-custom-login-script-js',
+        MEKATRON_CUSTOM_LOGIN_JS_URL.'login.js',
+        [],
+        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
+        [
+            'strategy'      => 'defer',
+            'in_footer'     => true
+        ]
+    );
+
 });
+
 
 /*Method 1 for importing CSS: BAD*/
 //add_action('login_head', function () {

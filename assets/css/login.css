@@ -60,6 +60,10 @@ p#login-message {
     border-radius: var(--login-border-radius);
 }
 
+div#login_error {
+    border-radius: var(--login-border-radius);
+}
+
 p.forgetmenot input {
     display: none;
 }
