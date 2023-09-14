@@ -28,6 +28,8 @@ const MEKATRON_CUSTOM_LOGIN_VER = '1.0.0';
  * $media -> media in css (all, screen, print, etc.)
  */
 add_action('login_enqueue_scripts', function (){
+
+    /* ############################# Enqueue style ############################# */
     wp_enqueue_style(
         'mekatron-custom-login-style-css',
         MEKATRON_CUSTOM_LOGIN_CSS_URL.'login.css',
@@ -39,12 +41,10 @@ add_action('login_enqueue_scripts', function (){
 //        'screen and (max-width: 600px)',
     'all'
     );
-
     $mekatron_login_background_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'login-back.jpg';
     $mekatron_login_logo_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'mekalogo3 - pwa.png';
     $mekatron_login_form_section_color = '#FFFFFF3F';
     $mekatron_login_form_color = '#FFFFFFAA';
-
     wp_add_inline_style(
         'mekatron-custom-login-style-css',
         "
@@ -63,7 +63,7 @@ add_action('login_enqueue_scripts', function (){
         "
     );
 
-    // Enqueue script
+    /* ############################# Enqueue script ############################# */
     wp_enqueue_script(
         'mekatron-custom-login-script-js',
         MEKATRON_CUSTOM_LOGIN_JS_URL.'login.js',
@@ -71,8 +71,78 @@ add_action('login_enqueue_scripts', function (){
         WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
         [
             'strategy'      => 'defer',
+            'in_footer'     => false
+        ]
+    );
+
+    $js_options = [
+        'username_min_character' => 5,
+        'password_min_character' => 6
+    ];
+    wp_add_inline_script(
+        'mekatron-custom-login-script-js',
+        "const MEKATRON_USERNAME_MIN_CHAR = " . json_encode($js_options),
+//        'after'
+        'before'
+    );
+
+    /* ############################# Enqueue script ############################# */
+    wp_enqueue_script(
+        'typewriter',
+        MEKATRON_CUSTOM_LOGIN_JS_URL.'typewriter.js',
+        [],
+        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
+        [
+            'strategy'      => 'defer',
             'in_footer'     => true
         ]
+    );
+    $typewriter_text = "Welcome to <b>mekatronik.ir</b>";
+    wp_add_inline_script(
+        'typewriter',
+        "
+        new Typewriter('#login-message', {
+          strings: ['$typewriter_text'],
+          autoStart: true,
+          loop: true,
+          delay: 100,
+          deleteSpeed: 50,
+          pauseFor: 2000,
+        });
+        ",
+        'after'
+    );
+
+    /* ############################# Enqueue script ############################# */
+    wp_enqueue_script(
+        'mekatron-custom-logo-script-js',
+        MEKATRON_CUSTOM_LOGIN_JS_URL.'logo.js',
+        [],
+        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
+        [
+            'strategy'      => 'defer',
+            'in_footer'     => true
+        ]
+    );
+    $logo_options = [
+        'link'      => "https://mekatronik.ir/",
+        'content'   => "mekatronik.ir",
+        'target'    => "_blank",
+        'style'     => [
+            'color' => [
+                'background'    => 'red',
+                'text'          =>  'blue'
+            ],
+            'font'  => [
+                'family'    =>  'Arial',
+                'size'      =>  'larger'
+            ]
+        ]
+    ];
+    wp_localize_script(
+        'mekatron-custom-logo-script-js',
+        'mekatron_logo_options',
+        $logo_options
     );
 
 });
