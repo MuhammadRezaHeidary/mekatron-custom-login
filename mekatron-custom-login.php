@@ -16,6 +16,9 @@ define('MEKATRON_CUSTOM_LOGIN_ASSETS_URL', plugin_dir_url(__FILE__).'assets/');
 const MEKATRON_CUSTOM_LOGIN_CSS_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'css/';
 const MEKATRON_CUSTOM_LOGIN_JS_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'js/';
 const MEKATRON_CUSTOM_LOGIN_IMAGES_URL = MEKATRON_CUSTOM_LOGIN_ASSETS_URL . 'images/';
+define('MEKATRON_CUSTOM_LOGIN_ADMIN_PATH', plugin_dir_path(__FILE__).'admin/');
+define('MEKATRON_CUSTOM_LOGIN_VIEW_PATH', plugin_dir_path(__FILE__).'view/');
+
 const MEKATRON_CUSTOM_LOGIN_VER = '1.0.0';
 
 /*Method 3 for importing CSS: GOOD*/
@@ -29,12 +32,22 @@ const MEKATRON_CUSTOM_LOGIN_VER = '1.0.0';
  */
 add_action('login_enqueue_scripts', function (){
 
+    /* ############################# Register style ############################# */
+    wp_register_style(
+        'bootstrap',
+        MEKATRON_CUSTOM_LOGIN_CSS_URL.'bootstrap.min.css',
+        [],
+        '5.3.0',
+        'all'
+    );
+
+
     /* ############################# Enqueue style ############################# */
     wp_enqueue_style(
         'mekatron-custom-login-style-css',
         MEKATRON_CUSTOM_LOGIN_CSS_URL.'login.css',
         //        array('bootstrap'),
-        [],
+        ['bootstrap'],
 //        '1.0.0',
 //        time(),
         WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
@@ -45,6 +58,13 @@ add_action('login_enqueue_scripts', function (){
     $mekatron_login_logo_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'mekalogo3 - pwa.png';
     $mekatron_login_form_section_color = '#FFFFFF3F';
     $mekatron_login_form_color = '#FFFFFFAA';
+
+    $login_settings = get_option('mekatron_custom_login_color', []);
+    if(isset($login_settings['column_color']) && $login_settings['column_color']) {
+        $mekatron_login_form_section_color = $login_settings['column_color'];
+    }
+    
+
     wp_add_inline_style(
         'mekatron-custom-login-style-css',
         "
@@ -63,11 +83,22 @@ add_action('login_enqueue_scripts', function (){
         "
     );
 
+    /* ############################# Register script ############################# */
+    wp_register_script(
+        'bootstrap',
+        MEKATRON_CUSTOM_LOGIN_JS_URL.'bootstrap.bundle.min.js',
+//        ['jquery'],
+        [],
+        '5.3.0',
+        true
+    );
+
+
     /* ############################# Enqueue script ############################# */
     wp_enqueue_script(
         'mekatron-custom-login-script-js',
         MEKATRON_CUSTOM_LOGIN_JS_URL.'login.js',
-        [],
+        ['jquery', 'underscore', 'bootstrap'],
         WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
         [
             'strategy'      => 'defer',
@@ -159,6 +190,11 @@ add_action('login_enqueue_scripts', function (){
 //    echo file_get_contents(MEKATRON_CUSTOM_LOGIN_CSS_URL.'login.css');
 //    echo '</style>';
 //});
+
+// Admin Menu
+if(is_admin()) {
+   include (MEKATRON_CUSTOM_LOGIN_ADMIN_PATH.'settings.php');
+}
 
 
 
