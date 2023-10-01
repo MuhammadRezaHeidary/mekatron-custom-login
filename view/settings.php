@@ -2,7 +2,7 @@
 global $title;
 $col_color = $mekatron_custom_login_options['column_color'] ?? '';
 ?>
-<h1><?php echo $title;?></h1>
+<h1 id="headlinethatchanges"><?php echo $title;?></h1>
 <form action="" method="post">
     <table class="form-table">
         <tbody>
