@@ -11,7 +11,8 @@
 
 body {
     /*background: var(--body-url);*/
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
     display: flex;
     justify-content:flex-start;
 }

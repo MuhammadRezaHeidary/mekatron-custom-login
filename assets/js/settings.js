@@ -23,4 +23,31 @@ jQuery(document).ready(function ($) {
     }
     $('#col-color').wpColorPicker(options);
 
+    var background_uploader;
+    $('#background-selector').click(function () {
+        if(background_uploader !== undefined) {
+            background_uploader.open();
+            return;
+        }
+        background_uploader = wp.media({
+            title: 'Select background image',
+            button: {
+                text: 'Select',
+            },
+            // multiple: true,
+            library: {
+                type: 'image',
+                // type: ['image', 'audio', 'video'],
+            }
+        });
+        background_uploader.on('select', function () {
+            let selected = background_uploader.state().get('selection').first().toJSON().url;
+            console.log(selected);
+            $('#background').val(selected);
+            $('#background-preview').attr('src',selected)
+        });
+
+        background_uploader.open();
+    });
+
 });

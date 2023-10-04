@@ -3,7 +3,13 @@
 defined('ABSPATH') || exit;
 
 function mekatron_custom_login_settings_load() {
+    // enqueue media
+    wp_enqueue_media();
+
+    // enqueue color picker
     wp_enqueue_style('wp-color-picker');
+
+    // enqueue script to set color picker properties
     wp_enqueue_script(
         'mekatron-custom-login-settings',
         MEKATRON_CUSTOM_LOGIN_JS_URL.'settings.js',
@@ -32,6 +38,8 @@ function mekatron_custom_login_settings() {
 //            print_r($_POST);
             $settings = get_option('mekatron_custom_login_color', []);
             $settings['column_color'] = sanitize_hex_color($_POST['column_color']);
+            $settings['background'] = esc_url_raw($_POST['background']);
+
             update_option('mekatron_custom_login_color', $settings);
             add_action('admin_notices', function () {
                 echo '

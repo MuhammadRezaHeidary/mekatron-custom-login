@@ -63,6 +63,9 @@ add_action('login_enqueue_scripts', function (){
     if(isset($login_settings['column_color']) && $login_settings['column_color']) {
         $mekatron_login_form_section_color = $login_settings['column_color'];
     }
+    if(isset($login_settings['background']) && $login_settings['background']) {
+        $mekatron_login_background_image = $login_settings['background'];
+    }
 
 
     wp_add_inline_style(
