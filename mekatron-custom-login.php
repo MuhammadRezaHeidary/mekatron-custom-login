@@ -58,6 +58,7 @@ add_action('login_enqueue_scripts', function (){
     $mekatron_login_logo_image = MEKATRON_CUSTOM_LOGIN_IMAGES_URL . 'mekalogo3 - pwa.png';
     $mekatron_login_form_section_color = '#FFFFFF3F';
     $mekatron_login_form_color = '#FFFFFFAA';
+    $css_custom_login_code = '';
 
     $login_settings = get_option('mekatron_custom_login_color', []);
     if(isset($login_settings['column_color']) && $login_settings['column_color']) {
@@ -66,11 +67,15 @@ add_action('login_enqueue_scripts', function (){
     if(isset($login_settings['background']) && $login_settings['background']) {
         $mekatron_login_background_image = $login_settings['background'];
     }
+    if(isset($login_settings['css_code']) && $login_settings['css_code']) {
+        $css_custom_login_code = $login_settings['css_code'];
+    }
 
 
     wp_add_inline_style(
         'mekatron-custom-login-style-css',
         "
+        $css_custom_login_code
         body {
             background: url('$mekatron_login_background_image');
         }

@@ -3,6 +3,33 @@
 defined('ABSPATH') || exit;
 
 function mekatron_custom_login_settings_load() {
+    // enqueue code mirror (code editor)
+    $code_mirror_settings = wp_enqueue_code_editor([
+//        'type'              => 'text/html',
+//        'type'              => 'text/js',
+        'type'              => 'text/css',
+        'codemirror'        => [
+            'lineNumbers'   => true,
+        ],
+        'htmlhint'          => [
+            'alt-require'   => false,
+            'id-unique'     => true,
+        ],
+        'jshint'          => [
+
+        ],
+        'csslint'          => [
+
+        ],
+    ]);
+
+    /*
+     * // filter for changing code editor default settings in all parts of wordpress
+     * add_filter('wp_code_editor_settings', function () {
+     *
+     * });
+    */
+
     // enqueue media
     wp_enqueue_media();
 
@@ -16,6 +43,14 @@ function mekatron_custom_login_settings_load() {
         ['wp-color-picker'],
         WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER
     );
+
+    // localize $code_mirror_settings to settings.js
+    wp_localize_script(
+        'mekatron-custom-login-settings',
+        'mekatron_code_mirror_settings',
+        $code_mirror_settings
+    );
+
 }
 
 function mekatron_custom_login_settings() {
@@ -39,6 +74,7 @@ function mekatron_custom_login_settings() {
             $settings = get_option('mekatron_custom_login_color', []);
             $settings['column_color'] = sanitize_hex_color($_POST['column_color']);
             $settings['background'] = esc_url_raw($_POST['background']);
+            $settings['css_code'] = ($_POST['css_code']);
 
             update_option('mekatron_custom_login_color', $settings);
             add_action('admin_notices', function () {

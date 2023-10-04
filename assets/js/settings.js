@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+
+    // Color Picker
     options = {
         defaultColor: '#FFFFFF3F',
         color: false,
@@ -23,6 +25,8 @@ jQuery(document).ready(function ($) {
     }
     $('#col-color').wpColorPicker(options);
 
+
+    // Uploader
     var background_uploader;
     $('#background-selector').click(function () {
         if(background_uploader !== undefined) {
@@ -49,5 +53,9 @@ jQuery(document).ready(function ($) {
 
         background_uploader.open();
     });
+
+
+    // Code Editor
+    wp.codeEditor.initialize($('#css_code'), mekatron_code_mirror_settings);
 
 });
