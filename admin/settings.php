@@ -3,6 +3,19 @@
 defined('ABSPATH') || exit;
 
 function mekatron_custom_login_settings_load() {
+
+    //enqueue thickbox
+    add_thickbox();
+
+    /* ############################# Enqueue style ############################# */
+    wp_enqueue_style(
+        'mekatron-custom-admin-style-style-css',
+        MEKATRON_CUSTOM_LOGIN_CSS_URL.'admin-style.css',
+        [],
+        WP_DEBUG ? time() : MEKATRON_CUSTOM_LOGIN_VER,
+        'all'
+    );
+
     // enqueue code mirror (code editor)
     $code_mirror_settings = wp_enqueue_code_editor([
 //        'type'              => 'text/html',
@@ -72,9 +85,11 @@ function mekatron_custom_login_settings() {
         if(isset($_POST['column_color'])) {
 //            print_r($_POST);
             $settings = get_option('mekatron_custom_login_color', []);
-            $settings['column_color'] = sanitize_hex_color($_POST['column_color']);
-            $settings['background'] = esc_url_raw($_POST['background']);
-            $settings['css_code'] = ($_POST['css_code']);
+            $settings['column_color']       = sanitize_hex_color($_POST['column_color']);
+            $settings['background']         = esc_url_raw($_POST['background']);
+            $settings['logo']               = esc_url_raw($_POST['logo']);
+            $settings['css_code']           = ($_POST['css_code']);
+
 
             update_option('mekatron_custom_login_color', $settings);
             add_action('admin_notices', function () {

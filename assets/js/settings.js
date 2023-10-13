@@ -58,4 +58,20 @@ jQuery(document).ready(function ($) {
     // Code Editor
     wp.codeEditor.initialize($('#css_code'), mekatron_code_mirror_settings);
 
+    //thickbox
+    $('.logo-selector-thickbox .logo-pack img').click(function () {
+        let url = $(this).attr('src');
+        console.log(url);
+        $('#logo').val(url);
+        tb_remove();
+    })
+
+    //thickbox2
+    window.send_to_editor = function (html) {
+        let url = $(html).attr('src');
+        console.log(url);
+        $('#logo').val(url);
+        tb_remove();
+    };
+
 });

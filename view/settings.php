@@ -2,6 +2,7 @@
 global $title;
 $col_color = $mekatron_custom_login_options['column_color'] ?? '';
 $background = $mekatron_custom_login_options['background'] ?? '';
+$logo = $mekatron_custom_login_options['logo'] ?? '';
 $css_code = $mekatron_custom_login_options['css_code'] ?? '';
 
 ?>
@@ -26,6 +27,37 @@ $css_code = $mekatron_custom_login_options['css_code'] ?? '';
                     <button type="button" class="button button-add-media" id="background-selector">Select</button>
                     <p style="height: 5px"></p>
                     <img src="<?php echo esc_url($background); ?>" alt="selected-background" style="width: 600px; height: auto;" id="background-preview">
+                </td>
+            </tr>
+<!--            <tr>-->
+<!--                <th scope="row">-->
+<!--                    <label for="logo">Logo</label>-->
+<!--                </th>-->
+<!--                <td>-->
+<!--                    <input type="url" name="logo" id="logo" style="width: 600px" value="--><?php //echo esc_url($logo); ?><!--">-->
+<!--                    <a href="#TB_inline&width=600&height:400&inlineId=logo-selector-thickbox" class="button button-add-media thickbox" id="logo-selector">Select</a>-->
+<!--                    <div class="logo-selector-thickbox" id="logo-selector-thickbox" style="display: none;">-->
+<!--                        <div class="logo-pack">-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2021/10/Frame-151-511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2022/11/database-511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2021/08/Frame-70-511x312.jpg"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2021/08/Frame-71-511x312.jpg"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2022/08/adobe-xd--511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2022/09/kotlin-511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2022/05/programing-511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2022/05/ALGORITHM2-511x312.png"/>-->
+<!--                            <img src="https://www.daneshjooyar.com/wp-content/uploads/2023/01/wordpress-plugin-development-511x312.png"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+            <tr>
+                <th scope="row">
+                    <label for="logo">Logo</label>
+                </th>
+                <td>
+                    <input type="url" name="logo" id="logo" style="width: 600px" value="<?php echo esc_url($logo); ?>">
+                    <a href="media-upload.php?type=image&TB_iframe=true&width=600&height:400&inlineId=logo-selector-thickbox" class="button button-add-media thickbox" id="logo-selector">Select</a>
                 </td>
             </tr>
             <tr>

@@ -70,7 +70,9 @@ add_action('login_enqueue_scripts', function (){
     if(isset($login_settings['css_code']) && $login_settings['css_code']) {
         $css_custom_login_code = $login_settings['css_code'];
     }
-
+    if(isset($login_settings['logo']) && $login_settings['logo']) {
+        $mekatron_login_logo_image = $login_settings['logo'];
+    }
 
     wp_add_inline_style(
         'mekatron-custom-login-style-css',
@@ -185,7 +187,6 @@ add_action('login_enqueue_scripts', function (){
     );
 
 });
-
 
 /*Method 1 for importing CSS: BAD*/
 //add_action('login_head', function () {

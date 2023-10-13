@@ -1,0 +1,13 @@
+.logo-pack {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:10px
+}
+
+.logo-pack img {
+    width:100%;
+    border: 1px solid #e2e2e2 !important;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
